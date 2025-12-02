@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalbim Sende | Siyah Işıklı Kalp</title>
+    <title>Kalbim Sende | Soft Işıklı Kalp</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -17,13 +17,13 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #000;
-            color: white;
+            background: #0a0a1a; /* Daha koyu mavi-siyah */
+            color: #e6e6ff; /* Soft lavanta rengi */
             min-height: 100vh;
             overflow: hidden;
         }
 
-        /* KALP EKRANI */
+        /* KALP EKRANI - SOFTER */
         #heart-screen {
             position: fixed;
             top: 0;
@@ -34,7 +34,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: #000;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 100%);
             z-index: 1000;
             transition: opacity 1s ease;
         }
@@ -67,96 +67,112 @@
             z-index: 2;
         }
 
-        /* Mektup Butonu */
+        /* Mektup Butonu - SOFTER */
         .letter-button {
-            background: linear-gradient(45deg, #ff0000, #ff3366);
-            color: white;
+            background: linear-gradient(45deg, #ff6b9d, #c44569); /* Soft pembe-kırmızı */
+            color: #fff;
             border: none;
             padding: 15px 50px;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             border-radius: 50px;
             cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.5),
-                        0 0 60px rgba(255, 51, 102, 0.3),
-                        inset 0 0 20px rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            animation: pulse-glow 2s infinite alternate;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3),
+                        0 0 40px rgba(196, 69, 105, 0.2);
+            transition: all 0.4s ease;
             z-index: 3;
             position: relative;
             margin-top: 20px;
             letter-spacing: 1px;
-            text-transform: uppercase;
+            overflow: hidden;
+        }
+
+        .letter-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .letter-button:hover::before {
+            left: 100%;
         }
 
         .letter-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 40px rgba(255, 0, 0, 0.7),
-                        0 0 80px rgba(255, 51, 102, 0.5),
-                        inset 0 0 25px rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.4),
+                        0 0 60px rgba(196, 69, 105, 0.3);
+        }
+
+        .letter-button:active {
+            transform: translateY(0);
         }
 
         .hint-text {
-            color: #ff3366;
+            color: #ff9ebb; /* Soft pembe */
             margin-top: 20px;
             font-size: 1rem;
-            opacity: 0.8;
-            animation: fadeInOut 2s infinite;
+            opacity: 0.9;
             text-align: center;
             z-index: 3;
             position: relative;
-            text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+            font-weight: 300;
         }
 
-        /* Işık efekti */
+        /* Soft ışık efekti */
         .light-beam {
             position: absolute;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(255,0,0,0.1) 0%, transparent 70%);
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.05) 0%, transparent 60%);
             z-index: 0;
-            animation: rotateBeam 20s linear infinite;
+            animation: rotateBeam 30s linear infinite;
         }
 
-        /* MEKTUP EKRANI */
+        /* MEKTUP EKRANI - ROMANTİK PASTEL */
         #letter-screen {
             display: none;
             opacity: 0;
             transition: opacity 1s ease;
             padding: 20px;
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            background: linear-gradient(135deg, #f8f4ff 0%, #e6e6ff 100%); /* Soft lavanta */
             min-height: 100vh;
             position: relative;
             overflow-y: auto;
         }
 
-        /* Mektup Konteyneri - Karanlık Tema */
+        /* Mektup Konteyneri - PASTEL TEMA */
         .letter-container {
             max-width: 800px;
             width: 100%;
             margin: 0 auto;
-            background: rgba(20, 20, 20, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.1),
-                        0 0 50px rgba(255, 51, 102, 0.05);
+            box-shadow: 0 15px 35px rgba(147, 112, 219, 0.1),
+                        0 5px 15px rgba(147, 112, 219, 0.05);
             overflow: hidden;
             padding: 40px;
-            border: 1px solid rgba(255, 51, 102, 0.1);
+            border: 1px solid rgba(255, 182, 193, 0.3);
             position: relative;
             z-index: 1;
+            backdrop-filter: blur(10px);
         }
 
         .letter-container::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ff0000, #ff3366, #ff0000);
-            border-radius: 22px;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(45deg, #ffb6c1, #dda0dd, #b0e0e6);
+            border-radius: 21px;
             z-index: -1;
-            animation: borderGlow 3s linear infinite;
+            opacity: 0.3;
         }
 
         /* Mektup İçeriği */
@@ -166,18 +182,19 @@
         }
 
         header h1 {
-            font-family: 'Arial Black', sans-serif;
-            font-size: 3rem;
-            color: #ff3366;
+            font-family: 'Georgia', serif;
+            font-size: 2.8rem;
+            color: #c44569; /* Soft bordo */
             margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(255, 51, 102, 0.7);
-            letter-spacing: 2px;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .subtitle {
             font-size: 1.2rem;
-            color: #aaa;
+            color: #888;
             font-style: italic;
+            font-weight: 300;
         }
 
         section {
@@ -185,32 +202,34 @@
         }
 
         h2 {
-            color: #ff3366;
+            color: #9370db; /* Orkide rengi */
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255, 51, 102, 0.3);
+            border-bottom: 2px solid rgba(255, 182, 193, 0.3);
             display: flex;
             align-items: center;
             gap: 10px;
-            text-shadow: 0 0 10px rgba(255, 51, 102, 0.3);
+            font-weight: 500;
         }
 
         h2 i {
-            color: #ff0000;
+            color: #ff6b9d;
         }
 
         .message p {
             margin-bottom: 20px;
             font-size: 1.1rem;
             line-height: 1.8;
-            color: #e0e0e0;
+            color: #555;
             text-align: justify;
         }
 
         .highlight {
-            color: #ff3366;
-            font-weight: bold;
-            text-shadow: 0 0 5px rgba(255, 51, 102, 0.5);
+            color: #c44569; /* Soft bordo */
+            font-weight: 600;
+            background: linear-gradient(120deg, rgba(255, 182, 193, 0.2) 0%, transparent 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
         }
 
         .signature {
@@ -218,39 +237,38 @@
             text-align: right;
             font-style: italic;
             padding: 25px;
-            background: rgba(255, 51, 102, 0.05);
-            border-radius: 10px;
-            border-left: 3px solid #ff3366;
+            background: linear-gradient(to right, transparent, rgba(255, 182, 193, 0.1));
+            border-radius: 15px;
+            border-left: 4px solid #ff6b9d;
         }
 
         .name {
-            font-weight: bold;
-            font-size: 1.5rem;
-            color: #ff3366;
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: #c44569;
             margin-top: 10px;
-            text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+            font-family: 'Georgia', serif;
         }
 
-        /* Müzik Bölümü - Karanlık Tema */
+        /* Müzik Bölümü - PASTEL */
         .music {
             text-align: center;
-            background: rgba(255, 51, 102, 0.1);
+            background: linear-gradient(to right, #e6e6ff, #f8f4ff);
             padding: 25px;
             border-radius: 15px;
-            border: 1px solid rgba(255, 51, 102, 0.2);
+            border: 2px solid rgba(255, 182, 193, 0.5);
         }
 
         .music h2 {
-            color: #ff3366;
-            border-bottom-color: rgba(255, 51, 102, 0.3);
+            color: #9370db;
         }
 
         .music-player {
             margin: 20px auto;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 51, 102, 0.2);
+            box-shadow: 0 8px 25px rgba(147, 112, 219, 0.15);
+            border: 1px solid rgba(255, 182, 193, 0.3);
         }
 
         /* Footer */
@@ -260,7 +278,7 @@
             color: #888;
             font-size: 0.9rem;
             padding-top: 20px;
-            border-top: 1px solid rgba(255, 51, 102, 0.1);
+            border-top: 1px solid rgba(255, 182, 193, 0.3);
         }
 
         .date {
@@ -269,36 +287,10 @@
             color: #aaa;
         }
 
-        /* Animasyonlar */
-        @keyframes pulse-glow {
-            0% {
-                box-shadow: 0 0 30px rgba(255, 0, 0, 0.5),
-                            0 0 60px rgba(255, 51, 102, 0.3),
-                            inset 0 0 20px rgba(255, 255, 255, 0.2);
-                transform: scale(1);
-            }
-            100% {
-                box-shadow: 0 0 40px rgba(255, 0, 0, 0.8),
-                            0 0 80px rgba(255, 51, 102, 0.6),
-                            inset 0 0 30px rgba(255, 255, 255, 0.3);
-                transform: scale(1.05);
-            }
-        }
-
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
+        /* Animasyonlar - YUMUŞAK */
         @keyframes rotateBeam {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-
-        @keyframes borderGlow {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
         }
 
         /* Geri Butonu */
@@ -306,7 +298,7 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            background: rgba(255, 51, 102, 0.9);
+            background: rgba(255, 107, 157, 0.9);
             color: white;
             border: none;
             padding: 10px 20px;
@@ -316,20 +308,21 @@
             align-items: center;
             gap: 8px;
             font-size: 1rem;
-            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
             transition: all 0.3s ease;
             z-index: 100;
+            backdrop-filter: blur(5px);
         }
 
         .back-button:hover {
-            background: rgba(255, 0, 0, 0.9);
-            transform: translateX(-5px);
+            background: rgba(196, 69, 105, 0.9);
+            transform: translateX(-3px);
         }
 
         /* Responsive */
         @media (max-width: 600px) {
             .letter-container {
-                padding: 20px;
+                padding: 25px;
             }
             
             header h1 {
@@ -337,7 +330,7 @@
             }
             
             .letter-button {
-                padding: 12px 30px;
+                padding: 14px 35px;
                 font-size: 1.2rem;
             }
             
@@ -365,7 +358,7 @@
             <i class="fas fa-heart"></i> MEKTUBU AÇ
         </button>
         
-        <p class="hint-text">Butona tıklayarak kalbimdeki sözleri okuyabilirsin ❤️</p>
+        <p class="hint-text">Butona tıklayarak kalbimdeki sözleri okuyabilirsin 💝</p>
     </div>
 
     <!-- MEKTUP EKRANI -->
@@ -377,41 +370,41 @@
         <div class="letter-container">
             <header>
                 <h1><i class="fas fa-heart"></i> Sevgili [Şenel],</h1>
-                <p class="subtitle">Bu mektup, karanlıkta parlayan kalbimden yazıldı...</p>
+                <p class="subtitle">Bu mektup, kalbimin en yumuşak tonlarından yazıldı...</p>
             </header>
 
             <main>
                 <section class="message">
-                    <h2><i class="fas fa-fire"></i> Kalbimden Gelen Işık</h2>
-                    <p>Bu karanlık ekranda gördüğün kalp, sana olan aşkımın bir yansıması. Seni üzdüğüm için <span class="highlight">derinden özür diliyorum</span>. Her hata, her yanlış anlaşılma senin yüzündeki gülümsemeyi gölgelediyse, bu benim en büyük acım.</p>
+                    <h2><i class="fas fa-feather-alt"></i> Kalbimden Mektup</h2>
+                    <p>Sana karşı hatalı olduğum her an için <span class="highlight">içtenlikle özür diliyorum</span>. Bazen duygularım kelimelerden hızlı koşuyor, bazen de tam söylemek istediğim an doğru cümleleri bulamıyorum.</p>
                     
-                    <p>Senin hayatımdaki yerin, bu ekrandaki kalp gibi parlak ve her şeyden daha görünür. <span class="highlight">Sen benim ışığımsın</span>, karanlıkta parlayan tek yıldızım. Seni kırdıysam, canını yaktıysam, bu benim beceriksizliğimdi, senin değerini bilemeyişimdi.</p>
+                    <p>Senin hayatımdaki değerini kelimelere sığdıramam. <span class="highlight">Sen benim en yumuşak hikayemsin</span>, en sıcak hatıram, en derin duygum. Seni kırdıysam, bu benim beceriksizliğimdi.</p>
                     
-                    <p>Yaptığım hatalar için pişmanlık duyuyorum ve bir daha asla aynı şeyleri tekrarlamamak için söz veriyorum. <span class="highlight">Seni kaybetmek, dünyamın ışığını kaybetmek gibi olur</span>.</p>
+                    <p>Yaptığım her hatadan ders aldım ve bir daha aynı yanlışları tekrarlamayacağıma <span class="highlight">söz veriyorum</span>. Çünkü seni kaybetmek, dünyamın renklerini kaybetmek gibi olur.</p>
                     
-                    <p>Lütfen bu özrümü kabul et. Sana olan sevgim, bu animasyondaki her ışık noktası gibi sonsuz ve parlak.</p>
+                    <p>Lütfen bu özrümü kabul et. Sana olan sevgim, bu sayfadaki her soft ton gibi derin ve kalıcı.</p>
                     
                     <div class="signature">
-                        <p>Sonsuza kadar seni seven,</p>
-                        <p class="name">[Eyüb] ❤️</p>
-                        <p><i class="fas fa-star"></i> Kalbimin tek sahibi</p>
+                        <p>Her zaman yanında olan,</p>
+                        <p class="name">[Eyüb] 💌</p>
+                        <p><i class="fas fa-star"></i> Kalbinin sakin limanı</p>
                     </div>
                 </section>
 
                 <section class="music">
-                    <h2><i class="fas fa-music"></i> Bizim Işığımız</h2>
+                    <h2><i class="fas fa-music"></i> Bizim Melodimiz</h2>
                     <div class="music-player">
                         <!-- BURAYA KENDİ SPOTIFY KODUNU YAPIŞTIR -->
-                        <iframe style="border-radius:12px" src="https://open.spotify.com/search/YALAN%20seni%20sevmedi%C4%9Fim%20yalan" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <iframe style="border-radius:12px" src="https://music.youtube.com/watch?v=bJZw2l1ElMY&si=frrqQhia_6Vc7OyH" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
-                    <p style="margin-top: 15px; font-style: italic; color: #ffccd5;">
-                        "Bu şarkı, seninle geçirdiğimiz her anı hatırlatıyor..."
+                    <p style="margin-top: 15px; font-style: italic; color: #9370db;">
+                        "Seni Çok Seviyorum"
                     </p>
                 </section>
             </main>
 
             <footer>
-                <p>Bu mektup ve animasyon sadece senin için kodlandı. ❤️</p>
+                <p>Bu mektup sadece senin için yazıldı ve kodlandı. 💝</p>
                 <p class="date">
                     <i class="far fa-calendar"></i> [BUGÜNÜN TARİHİ]
                     <br>
@@ -436,28 +429,24 @@
             heartCanvas.height = heartCanvas.offsetHeight;
         }
 
-        // Kalp çizim fonksiyonu (Python kodunun JavaScript versiyonu)
+        // YUMUŞAK KALP ÇİZİMİ
         function drawHeart() {
             heartCtx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
             
             // Kalbi merkeze yerleştir
             const centerX = heartCanvas.width / 2;
             const centerY = heartCanvas.height / 2;
-            const scale = 15; // Python'daki *20'ye benzer
+            const scale = 15;
             
+            // Ana kalp çizgisi (yumuşak pembe)
             heartCtx.beginPath();
-            
-            // Kalp parametrik denklemleri
             for (let i = 0; i < 2550; i++) {
                 const t = i / 100;
-                
-                // Python'daki matematiksel fonksiyonlar
                 const x = 16 * Math.pow(Math.sin(t), 3);
                 const y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
                 
-                // Ölçeklendir ve merkeze yerleştir
                 const plotX = x * scale + centerX;
-                const plotY = -y * scale + centerY; // y'yi ters çevir (canvas yönü için)
+                const plotY = -y * scale + centerY;
                 
                 if (i === 0) {
                     heartCtx.moveTo(plotX, plotY);
@@ -466,26 +455,32 @@
                 }
             }
             
-            // Kalp stilini ayarla
-            heartCtx.strokeStyle = '#ff3366';
-            heartCtx.lineWidth = 3;
-            heartCtx.shadowColor = '#ff0000';
-            heartCtx.shadowBlur = 20;
+            heartCtx.strokeStyle = '#ff9ebb'; // Soft pembe
+            heartCtx.lineWidth = 2;
+            heartCtx.shadowColor = 'rgba(255, 158, 187, 0.5)';
+            heartCtx.shadowBlur = 15;
             heartCtx.stroke();
             
-            // Kalbin içini doldur (isteğe bağlı)
-            heartCtx.fillStyle = 'rgba(255, 51, 102, 0.1)';
+            // Kalbin içini yumuşak gradient ile doldur
+            const gradient = heartCtx.createRadialGradient(
+                centerX, centerY, 50,
+                centerX, centerY, 200
+            );
+            gradient.addColorStop(0, 'rgba(255, 182, 193, 0.3)');
+            gradient.addColorStop(1, 'rgba(255, 182, 193, 0.05)');
+            
+            heartCtx.fillStyle = gradient;
             heartCtx.fill();
             
-            // Kalp atışı efekti
+            // Hafif kalp atışı efekti
             heartCtx.beginPath();
             for (let i = 0; i < 2550; i++) {
                 const t = i / 100;
                 const x = 16 * Math.pow(Math.sin(t), 3);
                 const y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
                 
-                const plotX = x * (scale + Math.sin(Date.now() / 500) * 2) + centerX;
-                const plotY = -y * (scale + Math.sin(Date.now() / 500) * 2) + centerY;
+                const plotX = x * (scale + Math.sin(Date.now() / 800) * 1.5) + centerX;
+                const plotY = -y * (scale + Math.sin(Date.now() / 800) * 1.5) + centerY;
                 
                 if (i === 0) {
                     heartCtx.moveTo(plotX, plotY);
@@ -494,30 +489,37 @@
                 }
             }
             
-            heartCtx.strokeStyle = 'rgba(255, 0, 0, 0.5)';
+            heartCtx.strokeStyle = 'rgba(255, 182, 193, 0.3)';
             heartCtx.lineWidth = 1;
-            heartCtx.shadowBlur = 15;
+            heartCtx.shadowBlur = 10;
             heartCtx.stroke();
         }
 
-        // Işık parçacıkları
+        // YUMUŞAK IŞIK PARÇACIKLARI
         const particles = [];
-        const particleCount = 150;
+        const particleCount = 1000; // Daha az parçacık
 
         class Particle {
             constructor() {
                 this.x = Math.random() * particlesCanvas.width;
                 this.y = Math.random() * particlesCanvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = Math.random() * 2 - 1;
-                this.speedY = Math.random() * 2 - 1;
-                this.color = `rgba(255, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, ${Math.random() * 0.5 + 0.5})`;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                // Soft pastel renkler
+                const colors = [
+                    'rgba(255, 182, 193, 0.6)', // Light pink
+                    'rgba(216, 191, 216, 0.6)', // Thistle
+                    'rgba(176, 224, 230, 0.6)', // Powder blue
+                    'rgba(221, 160, 221, 0.6)'  // Plum
+                ];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
                 this.waveOffset = Math.random() * Math.PI * 2;
             }
             
             update() {
-                this.x += this.speedX + Math.sin(Date.now() / 1000 + this.waveOffset) * 0.5;
-                this.y += this.speedY + Math.cos(Date.now() / 1000 + this.waveOffset) * 0.5;
+                this.x += this.speedX + Math.sin(Date.now() / 1500 + this.waveOffset) * 0.3;
+                this.y += this.speedY + Math.cos(Date.now() / 1500 + this.waveOffset) * 0.3;
                 
                 // Ekran sınırlarında
                 if (this.x > particlesCanvas.width) this.x = 0;
@@ -525,20 +527,14 @@
                 if (this.y > particlesCanvas.height) this.y = 0;
                 if (this.y < 0) this.y = particlesCanvas.height;
                 
-                // Parlama efekti
-                this.size = Math.sin(Date.now() / 500 + this.waveOffset) * 1.5 + 2;
+                // Hafif parlaması
+                this.size = Math.sin(Date.now() / 800 + this.waveOffset) * 0.8 + 1.5;
             }
             
             draw() {
                 particlesCtx.beginPath();
                 particlesCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 particlesCtx.fillStyle = this.color;
-                particlesCtx.fill();
-                
-                // Işık halesi
-                particlesCtx.beginPath();
-                particlesCtx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
-                particlesCtx.fillStyle = this.color.replace(')', ', 0.2)').replace('rgb', 'rgba');
                 particlesCtx.fill();
             }
         }
@@ -550,10 +546,10 @@
             }
         }
 
-        // Animasyon döngüsü
+        // YUMUŞAK ANİMASYON DÖNGÜSÜ
         function animate() {
-            // Işık parçacıkları için canvas'ı temizle (yarı saydam siyah)
-            particlesCtx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            // Canvas'ı soft temizle
+            particlesCtx.fillStyle = 'rgba(10, 10, 26, 0.05)';
             particlesCtx.fillRect(0, 0, particlesCanvas.width, particlesCanvas.height);
             
             // Parçacıkları güncelle ve çiz
@@ -573,10 +569,9 @@
             const heartScreen = document.getElementById('heart-screen');
             const letterScreen = document.getElementById('letter-screen');
             
-            // Kalp ekranını kapat
+            // Yumuşak geçiş
             heartScreen.style.opacity = '0';
             
-            // 0.8 saniye sonra tamamen gizle ve mektubu göster
             setTimeout(() => {
                 heartScreen.style.display = 'none';
                 letterScreen.style.display = 'block';
@@ -585,8 +580,8 @@
                     letterScreen.style.opacity = '1';
                 }, 100);
                 
-                // Işık efekti
-                createLightExplosion();
+                // Soft konfeti efekti
+                createSoftConfetti();
             }, 800);
             
             // Tarihi otomatik yaz
@@ -598,79 +593,8 @@
             const heartScreen = document.getElementById('heart-screen');
             const letterScreen = document.getElementById('letter-screen');
             
-            // Mektup ekranını kapat
             letterScreen.style.opacity = '0';
             
-            // 0.5 saniye sonra tamamen gizle ve kalbi göster
             setTimeout(() => {
                 letterScreen.style.display = 'none';
-                heartScreen.style.display = 'flex';
-                
-                setTimeout(() => {
-                    heartScreen.style.opacity = '1';
-                }, 100);
-            }, 500);
-        }
-        
-        // Işık patlaması efekti
-        function createLightExplosion() {
-            for (let i = 0; i < 50; i++) {
-                setTimeout(() => {
-                    const light = document.createElement('div');
-                    light.style.position = 'fixed';
-                    light.style.left = Math.random() * 100 + 'vw';
-                    light.style.top = Math.random() * 100 + 'vh';
-                    light.style.width = '10px';
-                    light.style.height = '10px';
-                    light.style.background = 'radial-gradient(circle, #ff3366, transparent)';
-                    light.style.borderRadius = '50%';
-                    light.style.zIndex = '9999';
-                    light.style.pointerEvents = 'none';
-                    light.style.animation = `lightFade 1s ease-out forwards`;
-                    
-                    document.body.appendChild(light);
-                    
-                    setTimeout(() => {
-                        light.remove();
-                    }, 1000);
-                }, i * 30);
-            }
-            
-            // CSS animasyonunu ekle
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes lightFade {
-                    0% { transform: scale(0); opacity: 1; }
-                    100% { transform: scale(5); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        // Tarih ayarlama
-        function setDate() {
-            const today = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const turkishDate = today.toLocaleDateString('tr-TR', options);
-            
-            const dateElement = document.querySelector('.date');
-            if (dateElement && dateElement.innerHTML.includes('[BUGÜNÜN TARİHİ]')) {
-                dateElement.innerHTML = dateElement.innerHTML.replace('[BUGÜNÜN TARİHİ]', turkishDate);
-            }
-        }
-
-        // Sayfa yüklendiğinde
-        window.addEventListener('load', () => {
-            resizeCanvas();
-            initParticles();
-            animate();
-            setDate();
-        });
-
-        // Pencere boyutu değiştiğinde
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-        });
-    </script>
-</body>
-</html>
+                heartScreen.style.dis
