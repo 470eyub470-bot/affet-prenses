@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sana Özürüm | Kalbimden Mektup</title>
+    <title>Sana Özürüm | Gül ve Mektup</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- CSS Stilleri -->
     <style>
-        /* Reset ve Genel Ayarlar */
+        /* Reset ve Temel */
         * {
             margin: 0;
             padding: 0;
@@ -24,33 +23,134 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
             color: #333;
-            line-height: 1.6;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* GÜL EKRANI */
+        #flower-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 1000;
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .flower-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin-bottom: 50px;
+        }
+
+        /* Gül Animasyonu */
+        .flower {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+        }
+
+        .petal {
+            position: absolute;
+            width: 60px;
+            height: 100px;
+            background: linear-gradient(to bottom, #ff6b8b, #ff4757);
+            border-radius: 60px 60px 0 0;
+            transform-origin: bottom center;
+            animation: bloom 2s ease-out forwards;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .petal:nth-child(1) { transform: rotate(0deg) translateY(-80px); animation-delay: 0.2s; }
+        .petal:nth-child(2) { transform: rotate(60deg) translateY(-80px); animation-delay: 0.4s; }
+        .petal:nth-child(3) { transform: rotate(120deg) translateY(-80px); animation-delay: 0.6s; }
+        .petal:nth-child(4) { transform: rotate(180deg) translateY(-80px); animation-delay: 0.8s; }
+        .petal:nth-child(5) { transform: rotate(240deg) translateY(-80px); animation-delay: 1s; }
+        .petal:nth-child(6) { transform: rotate(300deg) translateY(-80px); animation-delay: 1.2s; }
+
+        .flower-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #ffdd59, #ff9f1a);
+            border-radius: 50%;
+            z-index: 10;
+            animation: pulse 2s infinite alternate;
+            box-shadow: 0 0 30px rgba(255, 221, 89, 0.5);
+        }
+
+        /* Mektup Butonu */
+        .letter-button {
+            background: white;
+            color: #ff6b8b;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Dancing Script', cursive;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+            z-index: 20;
+            position: relative;
+        }
+
+        .letter-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            background: #ff6b8b;
+            color: white;
+        }
+
+        .letter-button:active {
+            transform: scale(0.95);
+        }
+
+        .hint-text {
+            color: white;
+            margin-top: 20px;
+            font-size: 1rem;
+            opacity: 0.8;
+            animation: fadeInOut 2s infinite;
+        }
+
+        /* MEKTUP EKRANI (GİZLİ) */
+        #letter-screen {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease;
             padding: 20px;
         }
 
-        .container {
+        .letter-container {
             max-width: 800px;
             width: 100%;
+            margin: 0 auto;
             background-color: white;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
             overflow: hidden;
             padding: 40px;
-            animation: fadeIn 1s ease-out;
+            animation: slideUp 1s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Header */
+        /* Mektup İçeriği */
         header {
             text-align: center;
             margin-bottom: 40px;
@@ -61,26 +161,13 @@
             font-size: 3rem;
             color: #ff6b8b;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .heart-beat {
-            animation: heartbeat 1.5s ease-in-out infinite;
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
         }
 
         .subtitle {
             font-size: 1.2rem;
             color: #888;
-            font-style: italic;
         }
 
-        /* Sections */
         section {
             margin-bottom: 40px;
             opacity: 0;
@@ -89,12 +176,6 @@
 
         section:nth-child(1) { animation-delay: 0.3s; }
         section:nth-child(2) { animation-delay: 0.6s; }
-        section:nth-child(3) { animation-delay: 0.9s; }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
 
         h2 {
             color: #5a67d8;
@@ -110,7 +191,6 @@
             color: #ff6b8b;
         }
 
-        /* Message */
         .message p {
             margin-bottom: 15px;
             font-size: 1.1rem;
@@ -141,30 +221,7 @@
             margin-top: 10px;
         }
 
-        /* Photos */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .photo-item {
-            height: 150px;
-            background: linear-gradient(45deg, #a8edea, #fed6e3);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .photo-item:hover {
-            transform: scale(1.05);
-        }
-
-        /* Music */
+        /* Müzik Bölümü */
         .music {
             text-align: center;
             background: linear-gradient(to right, #667eea, #764ba2);
@@ -200,172 +257,252 @@
             font-style: italic;
         }
 
-        /* Secret Message Button */
-        .secret-btn {
-            display: block;
-            margin: 20px auto;
-            padding: 12px 25px;
-            background: linear-gradient(to right, #ff6b8b, #ff8e53);
-            color: white;
+        /* Animasyonlar */
+        @keyframes bloom {
+            0% {
+                transform: rotate(var(--rot)) translateY(0) scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: rotate(var(--rot)) translateY(-80px) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            100% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Geri Butonu */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
             border: none;
+            padding: 10px 20px;
             border-radius: 50px;
-            font-size: 1rem;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+            z-index: 100;
         }
 
-        .secret-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.4);
-        }
-
-        .secret-message {
-            display: none;
-            background: rgba(255, 107, 139, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            text-align: center;
-            animation: fadeIn 0.5s ease;
+        .back-button:hover {
+            background: white;
+            transform: translateX(-5px);
         }
 
         /* Responsive */
         @media (max-width: 600px) {
-            .container {
+            .letter-container {
                 padding: 20px;
             }
-
+            
             header h1 {
                 font-size: 2.5rem;
             }
-
-            .photo-grid {
-                grid-template-columns: 1fr;
+            
+            .flower-container {
+                width: 250px;
+                height: 250px;
             }
             
-            section {
-                margin-bottom: 30px;
+            .petal {
+                width: 50px;
+                height: 80px;
             }
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        /* Yapraklar */
+        .leaf {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            background: linear-gradient(to bottom, #2ed573, #1dd1a1);
+            border-radius: 0 40px 0 40px;
+            z-index: -1;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+        .leaf.left {
+            top: 180px;
+            left: 30px;
+            transform: rotate(-30deg);
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #ff6b8b, #ff8e53);
-            border-radius: 4px;
-        }
-
-        /* Print */
-        @media print {
-            .container {
-                box-shadow: none;
-                padding: 0;
-            }
-            
-            .secret-btn {
-                display: none;
-            }
+        .leaf.right {
+            top: 180px;
+            right: 30px;
+            transform: rotate(30deg) scaleX(-1);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1><i class="fas fa-heart heart-beat"></i> Sevgili [Şenel],</h1>
-            <p class="subtitle">Bu sayfa sadece senin için hazırlandı...</p>
-        </header>
-
-        <main>
-            <section class="message">
-                <h2><i class="fas fa-envelope-open-text"></i> Kalbimden Mektup</h2>
-                <p>Bugün, sana içimdeki her şeyi dürüstçe anlatmak istiyorum. Seni üzdüğüm, kırdığım veya yanlış anlaşılmalara neden olduğum için <span class="highlight">gerçekten çok üzgünüm</span>.</p>
+    <!-- GÜL EKRANI -->
+    <div id="flower-screen">
+        <div class="flower-container">
+            <!-- Gül -->
+            <div class="flower">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="flower-center"></div>
                 
-                <p>Bazen kelimeler yetmiyor, bazen de tam söylemek istediğim an doğru cümleleri bulamıyorum. Ama şunu bilmeni istiyorum: <span class="highlight">Sen benim için çok değerlisin</span>. Senin mutluluğun benim için her şeyden önemli.</p>
-                
-                <p>Yaptığım hatanın farkındayım ve bir daha aynı şeyi tekrarlamamak için elimden geleni yapacağıma söz veriyorum. Çünkü seni kaybetmek istemiyorum. <span class="highlight">Seninle olan her anım benim için bir hazine</span>.</p>
-                
-                <p>Lütfen bu özrümü samimiyetle kabul et. Sana olan sevgim her geçen gün daha da büyüyor ve hayatımdaki en güzel şey sensin.</p>
-                
-                <div class="signature">
-                    <p>Seni her şeyden çok seven,</p>
-                    <p class="name">[Eyüb] ❤️</p>
-                </div>
-            </section>
-
-            <section class="photos">
-                <h2><i class="fas fa-images"></i> Güzel Anılarımız</h2>
-                <div class="photo-grid">
-                    <div class="photo-item" onclick="alert('İlk buluşmamız... 💕')">📸</div>
-                    <div class="photo-item" onclick="alert('O unutulmaz gün... 🌟')">📸</div>
-                    <div class="photo-item" onclick="alert('Beraber güldüğümüz an... 😊')">📸</div>
-                    <div class="photo-item" onclick="alert('Gelecekteki mutlu anlarımız... ✨')">📸</div>
-                </div>
-                <p style="text-align: center; margin-top: 15px; color: #666; font-size: 0.9rem;">
-                    <i class="fas fa-mouse-pointer"></i> Fotoğraflara tıklayarak mesajları gör
-                </p>
-            </section>
-
-            <section class="music">
-                <h2><i class="fas fa-music"></i> Bizim Şarkımız</h2>
-                <div class="music-player">
-                    <!-- SPOTIFY KODUNU BURAYA YAPIŞTIR -->
-                    <!-- Spotify'da şarkıyı aç → Paylaş → Parçayı yerleştir → Kodu kopyala -->
-                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                </div>
-                <p style="margin-top: 15px; font-style: italic;">
-                    "Bu şarkı bana hep seni hatırlatıyor..."
-                </p>
-            </section>
-
-            <!-- Gizli Mesaj -->
-            <button class="secret-btn" onclick="showSecretMessage()">
-                <i class="fas fa-lock"></i> Gizli Mesajı Aç
-            </button>
-            
-            <div id="secretMessage" class="secret-message">
-                <h3><i class="fas fa-star"></i> Sana Sürpriz!</h3>
-                <p>Seninle tekrar konuşabilmek, kahkahalarını duyabilmek için sabırsızlanıyorum. 💝</p>
-                <p>Beni affettiğin zaman, seni en sevdiğin yere götürmek istiyorum.</p>
-                <p style="font-size: 0.9rem; margin-top: 10px;">
-                    <i class="fas fa-heart"></i> Her zaman seninleyim...
-                </p>
+                <!-- Yapraklar -->
+                <div class="leaf left"></div>
+                <div class="leaf right"></div>
             </div>
-        </main>
-
-        <footer>
-            <p>Bu sayfa sadece senin için kodlandı. ❤️</p>
-            <p class="date">
-                <i class="far fa-calendar"></i> [2.12.2025]
-                <br>
-                <i class="far fa-clock"></i> Sonsuza kadar geçerli
-            </p>
-        </footer>
+        </div>
+        
+        <!-- Mektup Butonu -->
+        <button class="letter-button" onclick="openLetter()">
+            <i class="fas fa-envelope"></i> Mektubu Aç
+        </button>
+        
+        <p class="hint-text">Butona tıklayarak mektubu okuyabilirsin 💌</p>
     </div>
 
-    <!-- JavaScript -->
+    <!-- MEKTUP EKRANI -->
+    <div id="letter-screen">
+        <button class="back-button" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> Gül'e Geri Dön
+        </button>
+        
+        <div class="letter-container">
+            <header>
+                <h1><i class="fas fa-heart"></i> Sevgili [SEVGİLİNİN İSMİ],</h1>
+                <p class="subtitle">Bu mektup sadece senin için yazıldı...</p>
+            </header>
+
+            <main>
+                <section class="message">
+                    <h2><i class="fas fa-envelope-open-text"></i> Kalbimden Mektup</h2>
+                    <p>Bugün, sana içimdeki her şeyi dürüstçe anlatmak istiyorum. Seni üzdüğüm, kırdığım veya yanlış anlaşılmalara neden olduğum için <span class="highlight">gerçekten çok üzgünüm</span>.</p>
+                    
+                    <p>Bazen kelimeler yetmiyor, bazen de tam söylemek istediğim an doğru cümleleri bulamıyorum. Ama şunu bilmeni istiyorum: <span class="highlight">Sen benim için çok değerlisin</span>. Senin mutluluğun benim için her şeyden önemli.</p>
+                    
+                    <p>Yaptığım hatanın farkındayım ve bir daha aynı şeyi tekrarlamamak için elimden geleni yapacağıma söz veriyorum. Çünkü seni kaybetmek istemiyorum. <span class="highlight">Seninle olan her anım benim için bir hazine</span>.</p>
+                    
+                    <p>Lütfen bu özrümü samimiyetle kabul et. Sana olan sevgim her geçen gün daha da büyüyor ve hayatımdaki en güzel şey sensin.</p>
+                    
+                    <div class="signature">
+                        <p>Seni her şeyden çok seven,</p>
+                        <p class="name">[SENİN İSMİN] ❤️</p>
+                    </div>
+                </section>
+
+                <section class="music">
+                    <h2><i class="fas fa-music"></i> Bizim Şarkımız</h2>
+                    <div class="music-player">
+                        <!-- BURAYA KENDİ SPOTIFY KODUNU YAPIŞTIR -->
+                        <!-- Spotify'da şarkı aç → Paylaş → Parçayı yerleştir → Kodu kopyala -->
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                    <p style="margin-top: 15px; font-style: italic;">
+                        "Bu şarkı bana hep seni hatırlatıyor..."
+                    </p>
+                </section>
+            </main>
+
+            <footer>
+                <p>Bu mektup sadece senin için kodlandı. ❤️</p>
+                <p class="date">
+                    <i class="far fa-calendar"></i> [BUGÜNÜN TARİHİ]
+                    <br>
+                    <i class="far fa-clock"></i> Sonsuza kadar geçerli
+                </p>
+            </footer>
+        </div>
+    </div>
+
     <script>
-        // Gizli mesaj fonksiyonu
-        function showSecretMessage() {
-            const secretDiv = document.getElementById('secretMessage');
-            const button = document.querySelector('.secret-btn');
+        // Mektubu açma fonksiyonu
+        function openLetter() {
+            const flowerScreen = document.getElementById('flower-screen');
+            const letterScreen = document.getElementById('letter-screen');
             
-            if (secretDiv.style.display === 'block') {
-                secretDiv.style.display = 'none';
-                button.innerHTML = '<i class="fas fa-lock"></i> Gizli Mesajı Aç';
-            } else {
-                secretDiv.style.display = 'block';
-                button.innerHTML = '<i class="fas fa-lock-open"></i> Gizli Mesajı Kapat';
+            // Gül ekranını kapat
+            flowerScreen.style.opacity = '0';
+            flowerScreen.style.transform = 'scale(1.1)';
+            
+            // 0.8 saniye sonra tamamen gizle ve mektubu göster
+            setTimeout(() => {
+                flowerScreen.style.display = 'none';
+                letterScreen.style.display = 'block';
                 
-                // Konfeti efekti (basit versiyon)
+                // Opacity'yi yavaşça 1 yap
+                setTimeout(() => {
+                    letterScreen.style.opacity = '1';
+                }, 100);
+                
+                // Konfeti efekti
                 createHearts();
+            }, 800);
+            
+            // Tarihi otomatik yaz
+            setDate();
+        }
+        
+        // Geri dönme fonksiyonu
+        function goBack() {
+            const flowerScreen = document.getElementById('flower-screen');
+            const letterScreen = document.getElementById('letter-screen');
+            
+            // Mektup ekranını kapat
+            letterScreen.style.opacity = '0';
+            
+            // 0.5 saniye sonra tamamen gizle ve gülü göster
+            setTimeout(() => {
+                letterScreen.style.display = 'none';
+                flowerScreen.style.display = 'flex';
+                
+                // Opacity'yi yavaşça 1 yap
+                setTimeout(() => {
+                    flowerScreen.style.opacity = '1';
+                    flowerScreen.style.transform = 'scale(1)';
+                }, 100);
+            }, 500);
+        }
+        
+        // Tarih ayarlama
+        function setDate() {
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const turkishDate = today.toLocaleDateString('tr-TR', options);
+            
+            // Tarih elementini bul ve değiştir
+            const dateElement = document.querySelector('.date');
+            if (dateElement && dateElement.innerHTML.includes('[BUGÜNÜN TARİHİ]')) {
+                dateElement.innerHTML = dateElement.innerHTML.replace('[BUGÜNÜN TARİHİ]', turkishDate);
             }
         }
         
@@ -373,24 +510,26 @@
         function createHearts() {
             const colors = ['#ff6b8b', '#5a67d8', '#ff8e53', '#667eea'];
             
-            for (let i = 0; i < 20; i++) {
-                const heart = document.createElement('div');
-                heart.innerHTML = '❤️';
-                heart.style.position = 'fixed';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.top = '-50px';
-                heart.style.fontSize = Math.random() * 20 + 15 + 'px';
-                heart.style.opacity = '0.8';
-                heart.style.zIndex = '9999';
-                heart.style.pointerEvents = 'none';
-                heart.style.animation = `fall ${Math.random() * 2 + 2}s linear forwards`;
-                
-                document.body.appendChild(heart);
-                
-                // Kalpleri temizle
+            for (let i = 0; i < 30; i++) {
                 setTimeout(() => {
-                    heart.remove();
-                }, 3000);
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '❤️';
+                    heart.style.position = 'fixed';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '-50px';
+                    heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+                    heart.style.opacity = '0.8';
+                    heart.style.zIndex = '9999';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.animation = `fall ${Math.random() * 2 + 2}s linear forwards`;
+                    
+                    document.body.appendChild(heart);
+                    
+                    // Kalpleri temizle
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 3000);
+                }, i * 100);
             }
         }
         
@@ -406,28 +545,17 @@
         `;
         document.head.appendChild(style);
         
-        // Sayfa yüklendiğinde yavaşça açılma efekti
+        // Gül animasyonu için rot değişkenlerini ayarla
         document.addEventListener('DOMContentLoaded', function() {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 1s';
-            
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
-            
-            // Otomatik tarih (opsiyonel)
-            const today = new Date();
-            const dateElements = document.querySelectorAll('.date');
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const turkishDate = today.toLocaleDateString('tr-TR', options);
-            
-            dateElements.forEach(el => {
-                if (el.innerHTML.includes('[BUGÜNÜN TARİHİ]')) {
-                    el.innerHTML = el.innerHTML.replace('[BUGÜNÜN TARİHİ]', turkishDate);
-                }
+            const petals = document.querySelectorAll('.petal');
+            petals.forEach((petal, index) => {
+                const rotation = index * 60;
+                petal.style.setProperty('--rot', `${rotation}deg`);
             });
+            
+            // Başlangıçta tarihi ayarla
+            setDate();
         });
     </script>
 </body>
 </html>
-
