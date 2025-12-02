@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sana Özürüm | Gül ve Mektup</title>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -52,7 +50,7 @@
             margin-bottom: 50px;
         }
 
-        /* Gül Animasyonu */
+        /* Gül Animasyonu - DÜZELTİLDİ */
         .flower {
             position: absolute;
             top: 50%;
@@ -69,16 +67,61 @@
             background: linear-gradient(to bottom, #ff6b8b, #ff4757);
             border-radius: 60px 60px 0 0;
             transform-origin: bottom center;
-            animation: bloom 2s ease-out forwards;
+            opacity: 0;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .petal:nth-child(1) { transform: rotate(0deg) translateY(-80px); animation-delay: 0.2s; }
-        .petal:nth-child(2) { transform: rotate(60deg) translateY(-80px); animation-delay: 0.4s; }
-        .petal:nth-child(3) { transform: rotate(120deg) translateY(-80px); animation-delay: 0.6s; }
-        .petal:nth-child(4) { transform: rotate(180deg) translateY(-80px); animation-delay: 0.8s; }
-        .petal:nth-child(5) { transform: rotate(240deg) translateY(-80px); animation-delay: 1s; }
-        .petal:nth-child(6) { transform: rotate(300deg) translateY(-80px); animation-delay: 1.2s; }
+        /* Her yaprak için ayrı transform */
+        .petal:nth-child(1) { 
+            transform: rotate(0deg) translateY(0px); 
+            animation: bloom1 1.5s ease-out 0.3s forwards; 
+        }
+        .petal:nth-child(2) { 
+            transform: rotate(60deg) translateY(0px); 
+            animation: bloom2 1.5s ease-out 0.5s forwards; 
+        }
+        .petal:nth-child(3) { 
+            transform: rotate(120deg) translateY(0px); 
+            animation: bloom3 1.5s ease-out 0.7s forwards; 
+        }
+        .petal:nth-child(4) { 
+            transform: rotate(180deg) translateY(0px); 
+            animation: bloom4 1.5s ease-out 0.9s forwards; 
+        }
+        .petal:nth-child(5) { 
+            transform: rotate(240deg) translateY(0px); 
+            animation: bloom5 1.5s ease-out 1.1s forwards; 
+        }
+        .petal:nth-child(6) { 
+            transform: rotate(300deg) translateY(0px); 
+            animation: bloom6 1.5s ease-out 1.3s forwards; 
+        }
+
+        /* Animasyon tanımları */
+        @keyframes bloom1 {
+            0% { transform: rotate(0deg) translateY(0px) scale(0); opacity: 0; }
+            100% { transform: rotate(0deg) translateY(-80px) scale(1); opacity: 1; }
+        }
+        @keyframes bloom2 {
+            0% { transform: rotate(60deg) translateY(0px) scale(0); opacity: 0; }
+            100% { transform: rotate(60deg) translateY(-80px) scale(1); opacity: 1; }
+        }
+        @keyframes bloom3 {
+            0% { transform: rotate(120deg) translateY(0px) scale(0); opacity: 0; }
+            100% { transform: rotate(120deg) translateY(-80px) scale(1); opacity: 1; }
+        }
+        @keyframes bloom4 {
+            0% { transform: rotate(180deg) translateY(0px) scale(0); opacity: 0; }
+            100% { transform: rotate(180deg) translateY(-80px) scale(1); opacity: 1; }
+        }
+        @keyframes bloom5 {
+            0% { transform: rotate(240deg) translateY(0px) scale(0); opacity: 0; }
+            100% { transform: rotate(240deg) translateY(-80px) scale(1); opacity: 1; }
+        }
+        @keyframes bloom6 {
+            0% { transform: rotate(300deg) translateY(0px) scale(0); opacity: 0; }
+            100% { transform: rotate(300deg) translateY(-80px) scale(1); opacity: 1; }
+        }
 
         .flower-center {
             position: absolute;
@@ -109,6 +152,7 @@
             animation: float 3s ease-in-out infinite;
             z-index: 20;
             position: relative;
+            margin-top: 20px;
         }
 
         .letter-button:hover {
@@ -130,12 +174,14 @@
             animation: fadeInOut 2s infinite;
         }
 
-        /* MEKTUP EKRANI (GİZLİ) */
+        /* MEKTUP EKRANI */
         #letter-screen {
             display: none;
             opacity: 0;
             transition: opacity 1s ease;
             padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
         }
 
         .letter-container {
@@ -170,12 +216,7 @@
 
         section {
             margin-bottom: 40px;
-            opacity: 0;
-            animation: slideUp 0.8s ease forwards;
         }
-
-        section:nth-child(1) { animation-delay: 0.3s; }
-        section:nth-child(2) { animation-delay: 0.6s; }
 
         h2 {
             color: #5a67d8;
@@ -195,14 +236,6 @@
             margin-bottom: 15px;
             font-size: 1.1rem;
             text-align: justify;
-        }
-
-        .highlight {
-            background: linear-gradient(120deg, #ff6b8b 0%, #ff8e53 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: bold;
         }
 
         .signature {
@@ -258,17 +291,6 @@
         }
 
         /* Animasyonlar */
-        @keyframes bloom {
-            0% {
-                transform: rotate(var(--rot)) translateY(0) scale(0);
-                opacity: 0;
-            }
-            100% {
-                transform: rotate(var(--rot)) translateY(-80px) scale(1);
-                opacity: 1;
-            }
-        }
-
         @keyframes pulse {
             0% { transform: translate(-50%, -50%) scale(1); }
             100% { transform: translate(-50%, -50%) scale(1.1); }
@@ -319,6 +341,35 @@
             transform: translateX(-5px);
         }
 
+        /* Yapraklar */
+        .leaf {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            background: linear-gradient(to bottom, #2ed573, #1dd1a1);
+            border-radius: 0 40px 0 40px;
+            z-index: -1;
+            animation: leafGrow 1s ease-out 1.5s forwards;
+            opacity: 0;
+        }
+
+        .leaf.left {
+            top: 180px;
+            left: 30px;
+            transform: rotate(-30deg) scale(0);
+        }
+
+        .leaf.right {
+            top: 180px;
+            right: 30px;
+            transform: rotate(30deg) scaleX(-1) scale(0);
+        }
+
+        @keyframes leafGrow {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
             .letter-container {
@@ -338,28 +389,38 @@
                 width: 50px;
                 height: 80px;
             }
-        }
-
-        /* Yapraklar */
-        .leaf {
-            position: absolute;
-            width: 40px;
-            height: 60px;
-            background: linear-gradient(to bottom, #2ed573, #1dd1a1);
-            border-radius: 0 40px 0 40px;
-            z-index: -1;
-        }
-
-        .leaf.left {
-            top: 180px;
-            left: 30px;
-            transform: rotate(-30deg);
-        }
-
-        .leaf.right {
-            top: 180px;
-            right: 30px;
-            transform: rotate(30deg) scaleX(-1);
+            
+            .petal:nth-child(1) { animation: bloom1Mobile 1.5s ease-out 0.3s forwards; }
+            .petal:nth-child(2) { animation: bloom2Mobile 1.5s ease-out 0.5s forwards; }
+            .petal:nth-child(3) { animation: bloom3Mobile 1.5s ease-out 0.7s forwards; }
+            .petal:nth-child(4) { animation: bloom4Mobile 1.5s ease-out 0.9s forwards; }
+            .petal:nth-child(5) { animation: bloom5Mobile 1.5s ease-out 1.1s forwards; }
+            .petal:nth-child(6) { animation: bloom6Mobile 1.5s ease-out 1.3s forwards; }
+            
+            @keyframes bloom1Mobile {
+                0% { transform: rotate(0deg) translateY(0px) scale(0); opacity: 0; }
+                100% { transform: rotate(0deg) translateY(-60px) scale(1); opacity: 1; }
+            }
+            @keyframes bloom2Mobile {
+                0% { transform: rotate(60deg) translateY(0px) scale(0); opacity: 0; }
+                100% { transform: rotate(60deg) translateY(-60px) scale(1); opacity: 1; }
+            }
+            @keyframes bloom3Mobile {
+                0% { transform: rotate(120deg) translateY(0px) scale(0); opacity: 0; }
+                100% { transform: rotate(120deg) translateY(-60px) scale(1); opacity: 1; }
+            }
+            @keyframes bloom4Mobile {
+                0% { transform: rotate(180deg) translateY(0px) scale(0); opacity: 0; }
+                100% { transform: rotate(180deg) translateY(-60px) scale(1); opacity: 1; }
+            }
+            @keyframes bloom5Mobile {
+                0% { transform: rotate(240deg) translateY(0px) scale(0); opacity: 0; }
+                100% { transform: rotate(240deg) translateY(-60px) scale(1); opacity: 1; }
+            }
+            @keyframes bloom6Mobile {
+                0% { transform: rotate(300deg) translateY(0px) scale(0); opacity: 0; }
+                100% { transform: rotate(300deg) translateY(-60px) scale(1); opacity: 1; }
+            }
         }
     </style>
 </head>
@@ -406,11 +467,11 @@
             <main>
                 <section class="message">
                     <h2><i class="fas fa-envelope-open-text"></i> Kalbimden Mektup</h2>
-                    <p>Bugün, sana içimdeki her şeyi dürüstçe anlatmak istiyorum. Seni üzdüğüm, kırdığım veya yanlış anlaşılmalara neden olduğum için <span class="highlight">gerçekten çok üzgünüm</span>.</p>
+                    <p>Bugün, sana içimdeki her şeyi dürüstçe anlatmak istiyorum. Seni üzdüğüm, kırdığım veya yanlış anlaşılmalara neden olduğum için <span style="color: #ff6b8b; font-weight: bold;">gerçekten çok üzgünüm</span>.</p>
                     
-                    <p>Bazen kelimeler yetmiyor, bazen de tam söylemek istediğim an doğru cümleleri bulamıyorum. Ama şunu bilmeni istiyorum: <span class="highlight">Sen benim için çok değerlisin</span>. Senin mutluluğun benim için her şeyden önemli.</p>
+                    <p>Bazen kelimeler yetmiyor, bazen de tam söylemek istediğim an doğru cümleleri bulamıyorum. Ama şunu bilmeni istiyorum: <span style="color: #ff6b8b; font-weight: bold;">Sen benim için çok değerlisin</span>. Senin mutluluğun benim için her şeyden önemli.</p>
                     
-                    <p>Yaptığım hatanın farkındayım ve bir daha aynı şeyi tekrarlamamak için elimden geleni yapacağıma söz veriyorum. Çünkü seni kaybetmek istemiyorum. <span class="highlight">Seninle olan her anım benim için bir hazine</span>.</p>
+                    <p>Yaptığım hatanın farkındayım ve bir daha aynı şeyi tekrarlamamak için elimden geleni yapacağıma söz veriyorum. Çünkü seni kaybetmek istemiyorum. <span style="color: #ff6b8b; font-weight: bold;">Seninle olan her anım benim için bir hazine</span>.</p>
                     
                     <p>Lütfen bu özrümü samimiyetle kabul et. Sana olan sevgim her geçen gün daha da büyüyor ve hayatımdaki en güzel şey sensin.</p>
                     
@@ -424,7 +485,6 @@
                     <h2><i class="fas fa-music"></i> Bizim Şarkımız</h2>
                     <div class="music-player">
                         <!-- BURAYA KENDİ SPOTIFY KODUNU YAPIŞTIR -->
-                        <!-- Spotify'da şarkı aç → Paylaş → Parçayı yerleştir → Kodu kopyala -->
                         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
                     <p style="margin-top: 15px; font-style: italic;">
@@ -545,16 +605,15 @@
         `;
         document.head.appendChild(style);
         
-        // Gül animasyonu için rot değişkenlerini ayarla
+        // Sayfa yüklendiğinde
         document.addEventListener('DOMContentLoaded', function() {
-            const petals = document.querySelectorAll('.petal');
-            petals.forEach((petal, index) => {
-                const rotation = index * 60;
-                petal.style.setProperty('--rot', `${rotation}deg`);
-            });
-            
             // Başlangıçta tarihi ayarla
             setDate();
+            
+            // 0.5 saniye sonra butonu göster (gül açıldıktan sonra)
+            setTimeout(() => {
+                document.querySelector('.letter-button').style.opacity = '1';
+            }, 2000);
         });
     </script>
 </body>
